@@ -1,0 +1,200 @@
+<!--  -->
+<template>
+  <div>
+    <div class="dataList">
+      <!-- 按钮 -->
+      <el-button
+        class="my-btn"
+        :class="{ qdkaction: this.checkItem == 1 }"
+        @click="getThisMonthTime"
+        >本月</el-button
+      >
+      <el-button
+        class="my-btn"
+        :class="{ qdkaction: this.checkItem == 2 }"
+        @click="getThisSeason"
+        >本季</el-button
+      >
+      <!-- 选择日期 -->
+      <el-date-picker
+        class="my-dateRange"
+        v-model="date"
+        type="daterange"
+        range-separator="-"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
+      >
+      </el-date-picker>
+      <el-button class="my-btn my-sureBtn" @click="getList">确认</el-button>
+    </div>
+    <!-- Form表单 -->
+    <div class="my-form">
+      <el-table
+        :data="formItems"
+        style="width: 100%"
+        :cell-style="rowClass"
+        :header-cell-style="headClass"
+      >
+        <!-- <el-table-column prop="materialType" label="材料类型"></el-table-column> -->
+        <el-table-column prop="materialName" label="材料名称"></el-table-column>
+        <el-table-column prop="time" label="时间"> </el-table-column>
+        <el-table-column prop="inventoryQuantity" label="库存数量">
+        </el-table-column>
+      </el-table>
+      <!-- 分页按钮 -->
+      <div class="my-btnGroup" v-show="this.formItems.length !== 0">
+        <el-button-group class="my-btnGroupItem">
+          <el-button icon="el-icon-arrow-left">上一页</el-button>
+          <el-button>1</el-button>
+          <el-button>2</el-button>
+          <el-button
+            >下一页<i class="el-icon-arrow-right el-icon--right"></i
+          ></el-button>
+        </el-button-group>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import moment from "moment";
+import { shoudong } from "@/api/production/jxc";
+
+export default {
+  data() {
+    return {
+      date: [], //时间控件的值
+      checkItem: 0, //时间按钮的样式
+      formItems: [
+        {
+          materialType: "材料类型",
+          materialName: "材料名称",
+          time: "时间",
+          inventoryQuantity: "库存数量",
+        },
+      ],
+    };
+  },
+
+  components: {},
+
+  computed: {},
+
+  methods: {
+    getThisMonthTime() {
+      this.checkItem = 1;
+      const startDate = moment()
+        .month(moment().month())
+        .startOf("month")
+        .format("YYYY-MM-DD");
+      const endDate = moment()
+        .month(moment().month())
+        .endOf("month")
+        .format("YYYY-MM-DD");
+      this.date = [startDate, endDate];
+    },
+    getThisSeason() {
+      this.checkItem = 2;
+      const startDate = moment().startOf("quarter").format("YYYY-MM-DD");
+      const endDate = moment().endOf("quarter").format("YYYY-MM-DD");
+      this.date = [startDate, endDate];
+    },
+    // 表头样式设置
+    headClass() {
+      return "text-align: center;";
+    },
+    // 表格样式设置
+    rowClass() {
+      return "text-align: center;";
+    },
+    getList() {
+      var params = {
+        // beginDate: this.date[0],
+        // endDate: this.date[1],
+        // msId: Cookies.get("mixingStationId"),
+      };
+      shoudong().then((res) => {
+        console.log(res);
+      });
+    },
+  },
+};
+</script>
+
+<style lang='scss' rel='stylesheet/scss' scoped>
+.dataList {
+  padding: 20px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  // align-items: center;
+  .my-btn {
+    width: 60px;
+    height: 36px;
+    margin: 0 !important;
+    margin-right: 20px !important;
+    font-size: 14px;
+    background-color: #fff;
+    font-weight: 400;
+    color: #888888;
+    border: 1px solid #e6e6e6;
+    font-weight: 400;
+    text-align: center;
+    padding: 0;
+
+    //
+    &.qdkaction::before {
+      content: "";
+      width: 3px;
+      height: 8px;
+      position: absolute;
+      right: 4px;
+      bottom: 2px;
+      border: 1px solid #fff;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      transform: rotate(36deg);
+      z-index: 2;
+    }
+    &.qdkaction {
+      position: relative;
+    }
+    &.qdkaction::after {
+      content: "";
+      display: block;
+      height: 0px;
+      width: 0px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      color: #fff;
+      /**对号大小*/
+      font-size: 10px;
+      line-height: 8px;
+      border: 10px solid;
+      border-color: transparent #19b99b #19b99b transparent;
+    }
+  }
+  .my-dateRange {
+    // height: 28px;
+    margin-right: 14px !important;
+  }
+  .my-sureBtn {
+    // height: 28px;
+    border-radius: 17px;
+    background-color: #1ab99b;
+    color: white;
+    margin-right: 40px !important;
+  }
+}
+.my-form {
+  padding: 0 30px;
+  .my-btnGroup {
+    position: relative;
+    .my-btnGroupItem {
+      position: absolute;
+      margin-top: 10px;
+      right: 0;
+    }
+  }
+}
+</style>
