@@ -1,5 +1,5 @@
 import request from '@/utils/productionRequest'
-import {getEquipmentUrl} from '@/utils/station'
+import { getEquipmentUrl } from '@/utils/station'
 
 // 列表数据
 export function list(params) {
@@ -31,7 +31,7 @@ export function pBHByDate(params) {
 // 列表数据
 export function modelList(params) {
   return request({
-    url: 'https://test.zgdrkj.cn:8686/prod-api/push/qualityParameters/list',
+    url: 'https://mes.zgdrkj.cn:8082/prod-api/push/qualityParameters/list',
     method: 'get',
     params: params
   })

@@ -36,6 +36,7 @@
       <contractHistoryForm :contractId="businessKey" v-if="'contract' == definitionKey"/>
       <taskPlanHistoryForm :taskPlanId="businessKey" v-if="'taskPlan' == definitionKey"/>
       <contractModifyPriceHistoryForm :contractModifyPriceId="businessKey" v-if="'contractModifyPrice' == definitionKey"/>
+      <securityApproveHistoryForm :saId="businessKey" v-if="'securityApprove' == definitionKey"/>
       <el-form :model="form" ref="form" label-width="100px" class="demo-dynamic">
         <el-form-item
           v-for="(domain, index) in form.formData"
@@ -72,10 +73,11 @@
   import contractHistoryForm from "@/views/erp/contract/contractHistoryForm";
   import contractModifyPriceHistoryForm from "@/views/erp/contractModifyPrice/contractModifyPriceHistoryForm";
   import taskPlanHistoryForm from "@/views/manage/taskPlan/taskPlanHistoryForm";
+  import securityApproveHistoryForm from "@/views/erp/securityApprove/securityApproveHistoryForm";
 
   export default {
     name: "Leave",
-    components: {leaveHistoryForm, contractHistoryForm,contractModifyPriceHistoryForm, taskPlanHistoryForm},
+    components: {leaveHistoryForm, contractHistoryForm,contractModifyPriceHistoryForm, taskPlanHistoryForm,securityApproveHistoryForm},
     data() {
       return {
         id: '',

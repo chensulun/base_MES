@@ -207,6 +207,16 @@ export default {
             this.yData[3] = obj.steamTotal;
             // console.log(obj);
           }
+          if (this.queryParams.type == 3) {
+            this.xData = ['水(清洗)',"水(软化)"];
+            this.datalist = [{}];
+            // this.datalist[0].ql = response.obj.steamTotal;
+            // console.log(this.datalist);
+            // this.datalist = arrayData;
+            this.yData[0] = obj.sqx;
+            this.yData[1] = obj.srh;
+            console.log(obj);
+          }
           console.log(this.yData);
           this.drawLine();
         }

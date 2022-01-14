@@ -149,6 +149,10 @@ export default {
           value: "SEVEN",
           label: "粉料2",
         },
+        {
+          value: "SEVEN_1",
+          label: "粉料3",
+        },
       ],
       pbh: [], //返回的数据--材料类型
       tableData: [], //返回的数据--通过余量

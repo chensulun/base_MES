@@ -111,7 +111,7 @@
       </el-table-column>
       <el-table-column label="操作" align="center" width="150" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button
+          <!-- <el-button
             size="mini"
             type="text"
             icon="el-icon-s-promotion"
@@ -119,7 +119,7 @@
             v-if="!scope.row.orderId"
             v-hasPermi="['manage:project:edit']"
           >推送
-          </el-button>
+          </el-button> -->
           <el-button
             size="mini"
             type="text"

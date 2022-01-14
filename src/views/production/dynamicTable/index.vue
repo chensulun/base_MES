@@ -106,7 +106,7 @@
         </el-button>
       </el-col>
     </el-row>
-
+    <!--, dataShowType=1-->
     <el-table v-if="dataShowType === 1" v-loading="loading" :data="arr">
       <el-table-column
         label="时间"
@@ -123,7 +123,8 @@
                 scope.row.one_S,
                 scope.row.onenum,
                 scope.row.oneMin,
-                scope.row.oneMax
+                scope.row.oneMax,
+                scope.row.one_S_B
               )
             "
           />
@@ -137,7 +138,8 @@
                 scope.row.two_S,
                 scope.row.twonum,
                 scope.row.twoMin,
-                scope.row.twoMax
+                scope.row.twoMax,
+                scope.row.two_S_B
               )
             "
           />
@@ -151,7 +153,8 @@
                 scope.row.three_S,
                 scope.row.threenum,
                 scope.row.threeMin,
-                scope.row.threeMax
+                scope.row.threeMax,
+                scope.row.three_S_B
               )
             "
           />
@@ -165,7 +168,8 @@
                 scope.row.four_S,
                 scope.row.fournum,
                 scope.row.fourMin,
-                scope.row.fourMax
+                scope.row.fourMax,
+                scope.row.four_S_B
               )
             "
           />
@@ -179,7 +183,8 @@
                 scope.row.five_S,
                 scope.row.fivenum,
                 scope.row.fiveMin,
-                scope.row.fiveMax
+                scope.row.fiveMax,
+                scope.row.five_S_B
               )
             "
           />
@@ -193,7 +198,8 @@
                 scope.row.six_1_S,
                 scope.row.six_1num,
                 scope.row.six_1Min,
-                scope.row.six_1Max
+                scope.row.six_1Max,
+                scope.row.six_1_S_B
               )
             "
           />
@@ -207,7 +213,8 @@
                 scope.row.six_S,
                 scope.row.sixnum,
                 scope.row.sixMin,
-                scope.row.sixMax
+                scope.row.sixMax,
+                scope.row.six_S_B
               )
             "
           />
@@ -221,7 +228,8 @@
                 scope.row.seven_S,
                 scope.row.sevennum,
                 scope.row.sevenMin,
-                scope.row.sevenMax
+                scope.row.sevenMax,
+                scope.row.seven_S_B
               )
             "
           />
@@ -235,7 +243,8 @@
                 scope.row.zsl_S,
                 scope.row.zslnum,
                 scope.row.zslMin,
-                scope.row.zslMax
+                scope.row.zslMax,
+                scope.row.zsl_S_B
               )
             "
           />
@@ -249,7 +258,8 @@
                 scope.row.eight_S,
                 scope.row.eight_1num,
                 scope.row.eight_1Min,
-                scope.row.eight_1Max
+                scope.row.eight_1Max,
+                scope.row.eight_S_B
               )
             "
           />
@@ -263,7 +273,8 @@
                 scope.row.ysb,
                 scope.row.ysbnum,
                 scope.row.ysbMin,
-                scope.row.ysbMax
+                scope.row.ysbMax,
+                scope.row.ysb
               )
             "
           />
@@ -277,7 +288,8 @@
                 scope.row.zl,
                 scope.row.zlnum,
                 scope.row.zlMin,
-                scope.row.zlMax
+                scope.row.zlMax,
+                scope.row.zl
               )
             "
           />
@@ -291,7 +303,8 @@
                 scope.row.ctotal,
                 scope.row.ctotalnum,
                 scope.row.ctotalMin,
-                scope.row.ctotalMax
+                scope.row.ctotalMax,
+                scope.row.ctotal
               )
             "
           />
@@ -315,6 +328,7 @@
       </el-table-column>
     </el-table>
 
+    <!-- 默认, dataShowType=0 -->
     <el-table v-if="dataShowType === 0" v-loading="loading" :data="arr">
       <el-table-column
         label="时间"
@@ -331,7 +345,8 @@
                 scope.row.one_S_P,
                 scope.row.onenum,
                 scope.row.oneMin,
-                scope.row.oneMax
+                scope.row.oneMax,
+                scope.row.one_S_B
               )
             "
           />
@@ -345,7 +360,8 @@
                 scope.row.two_S_P,
                 scope.row.twonum,
                 scope.row.twoMin,
-                scope.row.twoMax
+                scope.row.twoMax,
+                scope.row.two_S_B
               )
             "
           />
@@ -359,7 +375,8 @@
                 scope.row.three_S_P,
                 scope.row.threenum,
                 scope.row.threeMin,
-                scope.row.threeMax
+                scope.row.threeMax,
+                scope.row.three_S_B
               )
             "
           />
@@ -373,7 +390,8 @@
                 scope.row.four_S_P,
                 scope.row.fournum,
                 scope.row.fourMin,
-                scope.row.fourMax
+                scope.row.fourMax,
+                scope.row.four_S_B
               )
             "
           />
@@ -387,7 +405,8 @@
                 scope.row.five_S_P,
                 scope.row.fivenum,
                 scope.row.fiveMin,
-                scope.row.fiveMax
+                scope.row.fiveMax,
+                scope.row.five_S_B
               )
             "
           />
@@ -401,7 +420,8 @@
                 scope.row.six_1_S_P,
                 scope.row.six_1num,
                 scope.row.six_1Min,
-                scope.row.six_1Max
+                scope.row.six_1Max,
+                scope.row.six_1_S_B
               )
             "
           />
@@ -415,7 +435,8 @@
                 scope.row.six_S_P,
                 scope.row.sixnum,
                 scope.row.sixMin,
-                scope.row.sixMax
+                scope.row.sixMax,
+                scope.row.six_S_B
               )
             "
           />
@@ -433,7 +454,23 @@
                 scope.row.seven_S_P,
                 scope.row.sevennum,
                 scope.row.sevenMin,
-                scope.row.sevenMax
+                scope.row.sevenMax,
+                scope.row.seven_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="粉料3" align="center" width="120px" prop="nine_S_P"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.nine_S_P,
+                scope.row.nine_Snum,
+                scope.row.nine_SMin,
+                scope.row.nine_SMax,
+                scope.row.nine_S_P
               )
             "
           />
@@ -451,7 +488,8 @@
                 scope.row.zsl_S_P,
                 scope.row.zslnum,
                 scope.row.zslMin,
-                scope.row.zslMax
+                scope.row.zslMax,
+                scope.row.zsl_S_B
               )
             "
           />
@@ -469,7 +507,8 @@
                 scope.row.eight_1_S_P,
                 scope.row.eight_1num,
                 scope.row.eight_1Min,
-                scope.row.eight_1Max
+                scope.row.eight_1Max,
+                scope.row.eight_1_S_B
               )
             "
           />
@@ -483,7 +522,8 @@
                 scope.row.ysb,
                 scope.row.ysbnum,
                 scope.row.ysbMin,
-                scope.row.ysbMax
+                scope.row.ysbMax,
+                scope.row.ysb
               )
             "
           />
@@ -497,7 +537,8 @@
                 scope.row.zl,
                 scope.row.zlnum,
                 scope.row.zlMin,
-                scope.row.zlMax
+                scope.row.zlMax,
+                scope.row.zl
               )
             "
           />
@@ -511,7 +552,230 @@
                 scope.row.ctotal,
                 scope.row.ctotalnum,
                 scope.row.ctotalMin,
-                scope.row.ctotalMax
+                scope.row.ctotalMax,
+                scope.row.ctotal
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="操作"
+        align="center"
+        class-name="small-padding fixed-width"
+      >
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-search"
+            @click="handleSearch(scope.row)"
+            v-if="scope.row.guanci.indexOf('盘') != '-1'"
+            >查看
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <!--鑫丰, dataShowType=2-->
+    <el-table v-if="dataShowType === 2" v-loading="loading" :data="arr">
+      <el-table-column
+        label="时间"
+        align="center"
+        width="150px"
+        prop="dateTime"
+      />
+      <el-table-column label="盘次" align="center" prop="guanci" />
+      <el-table-column label="仓1" align="center" width="120px" prop="one">
+        <template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.one,
+                scope.row.onenum,
+                scope.row.oneMin,
+                scope.row.oneMax,
+                scope.row.one_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="仓2" align="center" width="120px" prop="two">
+        <template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.two,
+                scope.row.twonum,
+                scope.row.twoMin,
+                scope.row.twoMax,
+                scope.row.two_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="仓3" align="center" width="120px" prop="three"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.three,
+                scope.row.threenum,
+                scope.row.threeMin,
+                scope.row.threeMax,
+                scope.row.three_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="仓4" align="center" width="120px" prop="four"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.four,
+                scope.row.fournum,
+                scope.row.fourMin,
+                scope.row.fourMax,
+                scope.row.four_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="仓5" align="center" width="120px" prop="five"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.five,
+                scope.row.fivenum,
+                scope.row.fiveMin,
+                scope.row.fiveMax,
+                scope.row.five_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="仓6" align="center" width="120px" prop="six_1"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.six_1,
+                scope.row.six_1num,
+                scope.row.six_1Min,
+                scope.row.six_1Max,
+                scope.row.six_1_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="粉料1" align="center" width="120px" prop="six"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.six,
+                scope.row.sixnum,
+                scope.row.sixMin,
+                scope.row.sixMax,
+                scope.row.six_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="粉料2" align="center" width="120px" prop="seven"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.seven,
+                scope.row.sevennum,
+                scope.row.sevenMin,
+                scope.row.sevenMax,
+                scope.row.seven_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="再生料" align="center" width="120px" prop="zshsl"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.zshsl,
+                scope.row.zslnum,
+                scope.row.zslMin,
+                scope.row.zslMax,
+                scope.row.zsl_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="沥青" align="center" width="120px" prop="eight"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.eight,
+                scope.row.eight_1num,
+                scope.row.eight_1Min,
+                scope.row.eight_1Max,
+                scope.row.eight_1_S_B
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="油石比" align="center" prop="ysb"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.ysb,
+                scope.row.ysbnum,
+                scope.row.ysbMin,
+                scope.row.ysbMax,
+                scope.row.ysb
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="重量" align="center" prop="zl"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.zl,
+                scope.row.zlnum,
+                scope.row.zlMin,
+                scope.row.zlMax,
+                scope.row.zl
+              )
+            "
+          />
+        </template>
+      </el-table-column>
+      <el-table-column label="石料总量" align="center" prop="ctotal"
+        ><template slot-scope="scope">
+          <div
+            v-html="
+              createHtml(
+                scope.row.ctotal,
+                scope.row.ctotalnum,
+                scope.row.ctotalMin,
+                scope.row.ctotalMax,
+                scope.row.ctotal
               )
             "
           />
@@ -564,7 +828,7 @@ import {
   pBHByDate,
   modelList,
 } from "@/api/production/dynamicTable";
-import { getMS ,getPeId} from "@/utils/station";
+import { getMS, getPeId } from "@/utils/station";
 import Form from "./components/Form";
 import axios from "axios";
 
@@ -619,7 +883,7 @@ export default {
       open: false,
       // 表单校验
       rules: {},
-      //展示数据类型 0:混合 1:比例
+      //展示数据类型 0:混合 1:比例, 2:鑫丰
       dataShowType: -1,
       //质量参数表
       modelList: [],
@@ -634,11 +898,11 @@ export default {
   methods: {
     initDataShowType() {
       let msName = getMS();
-      if (msName.indexOf("彭山") !== -1) {
+      if (msName.indexOf("彭山") > -1) {
         this.dataShowType = 1;
-      } else if (msName.indexOf("鑫丰") !== -1) {
-        this.dataShowType = 1;
-      } else if (msName.indexOf("金堂") !== -1) {
+      } else if (msName.indexOf("鑫丰") > -1) {
+        this.dataShowType = 2;
+      } else if (msName.indexOf("金堂") > -1) {
         this.dataShowType = 1;
       } else {
         this.dataShowType = 0;
@@ -734,8 +998,9 @@ export default {
     getModelList() {
       var that = this;
       let peId = getPeId();
+      this.initDataShowType();
       // var data = { qpType: 0, peProductionType: 'AC-16' }
-      var data = { qpType: 0,peId:peId };
+      var data = { qpType: 0, peId: peId };
       modelList(data).then((response) => {
         that.modelList = response.rows;
         // console.log(that.modelList);
@@ -752,44 +1017,44 @@ export default {
         if (this.dataShowType == 0) {
           for (let k = 0; k < that.dynamicTableList.length; k += 3) {
             var onenum =
-              that.dynamicTableList[k + 2].one_S -
-              that.dynamicTableList[k + 1].one_S;
+              that.dynamicTableList[k + 2].one_S_B -
+              that.dynamicTableList[k + 1].one_S_B;
             that.dynamicTableList[k + 2].onenum = onenum.toFixed(2);
             var twonum =
-              that.dynamicTableList[k + 2].two_S -
-              that.dynamicTableList[k + 1].two_S;
+              that.dynamicTableList[k + 2].two_S_B -
+              that.dynamicTableList[k + 1].two_S_B;
             that.dynamicTableList[k + 2].twonum = twonum.toFixed(2);
             var threenum =
-              that.dynamicTableList[k + 2].three_S -
-              that.dynamicTableList[k + 1].three_S;
+              that.dynamicTableList[k + 2].three_S_B -
+              that.dynamicTableList[k + 1].three_S_B;
             that.dynamicTableList[k + 2].threenum = threenum.toFixed(2);
             var fournum =
-              that.dynamicTableList[k + 2].four_S -
-              that.dynamicTableList[k + 1].four_S;
+              that.dynamicTableList[k + 2].four_S_B -
+              that.dynamicTableList[k + 1].four_S_B;
             that.dynamicTableList[k + 2].fournum = fournum.toFixed(2);
             var fivenum =
-              that.dynamicTableList[k + 2].five_S -
-              that.dynamicTableList[k + 1].five_S;
+              that.dynamicTableList[k + 2].five_S_B -
+              that.dynamicTableList[k + 1].five_S_B;
             that.dynamicTableList[k + 2].fivenum = fivenum.toFixed(2);
             var six_1num =
-              that.dynamicTableList[k + 2].six_1_S -
-              that.dynamicTableList[k + 1].six_1_S;
+              that.dynamicTableList[k + 2].six_1_S_B -
+              that.dynamicTableList[k + 1].six_1_S_B;
             that.dynamicTableList[k + 2].six_1num = six_1num.toFixed(2);
             var sixnum =
-              that.dynamicTableList[k + 2].six_S -
-              that.dynamicTableList[k + 1].six_S;
+              that.dynamicTableList[k + 2].six_S_B -
+              that.dynamicTableList[k + 1].six_S_B;
             that.dynamicTableList[k + 2].sixnum = sixnum.toFixed(2);
             var sevennum =
-              that.dynamicTableList[k + 2].seven_S -
-              that.dynamicTableList[k + 1].seven_S;
+              that.dynamicTableList[k + 2].seven_S_B -
+              that.dynamicTableList[k + 1].seven_S_B;
             that.dynamicTableList[k + 2].sevennum = sevennum.toFixed(2);
             var zslnum =
-              that.dynamicTableList[k + 2].zsl_S -
-              that.dynamicTableList[k + 1].zsl_S;
+              that.dynamicTableList[k + 2].zsl_S_B -
+              that.dynamicTableList[k + 1].zsl_S_B;
             that.dynamicTableList[k + 2].zslnum = zslnum.toFixed(2);
             var eight_1num =
-              that.dynamicTableList[k + 2].eight_1_S -
-              that.dynamicTableList[k + 1].eight_1_S;
+              that.dynamicTableList[k + 2].eight_1_S_B -
+              that.dynamicTableList[k + 1].eight_1_S_B;
             that.dynamicTableList[k + 2].eight_1num = eight_1num.toFixed(2);
             var ysbnum =
               that.dynamicTableList[k + 2].ysb -
@@ -803,47 +1068,101 @@ export default {
               that.dynamicTableList[k + 1].ctotal;
             that.dynamicTableList[k + 2].ctotalnum = ctotalnum.toFixed(2);
           }
-        } else {
+        } else if (this.dataShowType == 1) {
           for (let k = 0; k < that.dynamicTableList.length; k += 3) {
             var onenum =
-              that.dynamicTableList[k + 2].one_S -
-              that.dynamicTableList[k + 1].one_S;
+              that.dynamicTableList[k + 2].one_S_B -
+              that.dynamicTableList[k + 1].one_S_B;
             that.dynamicTableList[k + 2].onenum = onenum.toFixed(2);
             var twonum =
-              that.dynamicTableList[k + 2].two_S -
-              that.dynamicTableList[k + 1].two_S;
+              that.dynamicTableList[k + 2].two_S_B -
+              that.dynamicTableList[k + 1].two_S_B;
             that.dynamicTableList[k + 2].twonum = twonum.toFixed(2);
             var threenum =
-              that.dynamicTableList[k + 2].three_S -
-              that.dynamicTableList[k + 1].three_S;
+              that.dynamicTableList[k + 2].three_S_B -
+              that.dynamicTableList[k + 1].three_S_B;
             that.dynamicTableList[k + 2].threenum = threenum.toFixed(2);
             var fournum =
-              that.dynamicTableList[k + 2].four_S -
-              that.dynamicTableList[k + 1].four_S;
+              that.dynamicTableList[k + 2].four_S_B -
+              that.dynamicTableList[k + 1].four_S_B;
             that.dynamicTableList[k + 2].fournum = fournum.toFixed(2);
             var fivenum =
-              that.dynamicTableList[k + 2].five_S -
-              that.dynamicTableList[k + 1].five_S;
+              that.dynamicTableList[k + 2].five_S_B -
+              that.dynamicTableList[k + 1].five_S_B;
             that.dynamicTableList[k + 2].fivenum = fivenum.toFixed(2);
             var six_1num =
-              that.dynamicTableList[k + 2].six_1_S -
-              that.dynamicTableList[k + 1].six_1_S;
+              that.dynamicTableList[k + 2].six_1_S_B -
+              that.dynamicTableList[k + 1].six_1_S_B;
             that.dynamicTableList[k + 2].six_1num = six_1num.toFixed(2);
             var sixnum =
-              that.dynamicTableList[k + 2].six_S -
-              that.dynamicTableList[k + 1].six_S;
+              that.dynamicTableList[k + 2].six_S_B -
+              that.dynamicTableList[k + 1].six_S_B;
             that.dynamicTableList[k + 2].sixnum = sixnum.toFixed(2);
             var sevennum =
-              that.dynamicTableList[k + 2].seven_S -
-              that.dynamicTableList[k + 1].seven_S;
+              that.dynamicTableList[k + 2].seven_S_B -
+              that.dynamicTableList[k + 1].seven_S_B;
             that.dynamicTableList[k + 2].sevennum = sevennum.toFixed(2);
             var zslnum =
-              that.dynamicTableList[k + 2].zsl_S -
-              that.dynamicTableList[k + 1].zsl_S;
+              that.dynamicTableList[k + 2].zsl_S_B -
+              that.dynamicTableList[k + 1].zsl_S_B;
             that.dynamicTableList[k + 2].zslnum = zslnum.toFixed(2);
             var eight_1num =
-              that.dynamicTableList[k + 2].eight_1_S -
-              that.dynamicTableList[k + 1].eight_1_S;
+              that.dynamicTableList[k + 2].eight_1_S_B -
+              that.dynamicTableList[k + 1].eight_1_S_B;
+            that.dynamicTableList[k + 2].eight_1num = eight_1num.toFixed(2);
+            var ysbnum =
+              that.dynamicTableList[k + 2].ysb -
+              that.dynamicTableList[k + 1].ysb;
+            that.dynamicTableList[k + 2].ysbnum = ysbnum.toFixed(2);
+            var zlnum =
+              that.dynamicTableList[k + 2].zl - that.dynamicTableList[k + 1].zl;
+            that.dynamicTableList[k + 2].zlnum = zlnum.toFixed(2);
+            var ctotalnum =
+              that.dynamicTableList[k + 2].ctotal -
+              that.dynamicTableList[k + 1].ctotal;
+            that.dynamicTableList[k + 2].ctotalnum = ctotalnum.toFixed(2);
+          }
+        } else if (this.dataShowType == 2) {
+          for (let k = 0; k < that.dynamicTableList.length; k += 3) {
+            var onenum =
+              that.dynamicTableList[k + 2].one -
+              that.dynamicTableList[k + 1].one;
+            that.dynamicTableList[k + 2].onenum = onenum.toFixed(2);
+            var twonum =
+              that.dynamicTableList[k + 2].two -
+              that.dynamicTableList[k + 1].two;
+            that.dynamicTableList[k + 2].twonum = twonum.toFixed(2);
+            var threenum =
+              that.dynamicTableList[k + 2].three -
+              that.dynamicTableList[k + 1].three;
+            that.dynamicTableList[k + 2].threenum = threenum.toFixed(2);
+            var fournum =
+              that.dynamicTableList[k + 2].four -
+              that.dynamicTableList[k + 1].four;
+            that.dynamicTableList[k + 2].fournum = fournum.toFixed(2);
+            var fivenum =
+              that.dynamicTableList[k + 2].five -
+              that.dynamicTableList[k + 1].five;
+            that.dynamicTableList[k + 2].fivenum = fivenum.toFixed(2);
+            var six_1num =
+              that.dynamicTableList[k + 2].six_1 -
+              that.dynamicTableList[k + 1].six_1;
+            that.dynamicTableList[k + 2].six_1num = six_1num.toFixed(2);
+            var sixnum =
+              that.dynamicTableList[k + 2].six -
+              that.dynamicTableList[k + 1].six;
+            that.dynamicTableList[k + 2].sixnum = sixnum.toFixed(2);
+            var sevennum =
+              that.dynamicTableList[k + 2].seven -
+              that.dynamicTableList[k + 1].seven;
+            that.dynamicTableList[k + 2].sevennum = sevennum.toFixed(2);
+            var zslnum =
+              that.dynamicTableList[k + 2].zshsl -
+              that.dynamicTableList[k + 1].zshsl;
+            that.dynamicTableList[k + 2].zslnum = zslnum.toFixed(2);
+            var eight_1num =
+              that.dynamicTableList[k + 2].eight -
+              that.dynamicTableList[k + 1].eight;
             that.dynamicTableList[k + 2].eight_1num = eight_1num.toFixed(2);
             var ysbnum =
               that.dynamicTableList[k + 2].ysb -
@@ -859,12 +1178,12 @@ export default {
           }
         }
         that.arr = that.dynamicTableList;
-        this.initDataShowType();
+        // console.log(that.arr);
       });
     },
     /*变色*/
-    createHtml(value, num, min, max) {
-      console.log(value, num, min, max);
+    createHtml(value, num, min, max, _S_B) {
+      // console.log(value, num, min, max, _S_B);
       if (min && max) {
         if (num > max) {
           return `<div style="color:red">${value}</div>`;

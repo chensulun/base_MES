@@ -64,7 +64,7 @@
               plain
               icon="el-icon-plus"
               size="mini"
-              @click="handleAdd2"
+              @click="handleAdd"
               v-hasPermi="['manage:qualityParameters:add']"
               >新增质量参数
             </el-button>
@@ -73,9 +73,9 @@
               plain
               icon="el-icon-plus"
               size="mini"
-              @click="handleAdd"
+              @click="handleAdd2"
               v-hasPermi="['manage:qualityParameters:add']"
-              >新增质量参数管理
+              >新增合成级配参数
             </el-button>
           </el-col>
           <el-col :span="1.5">
@@ -124,12 +124,12 @@
 
     <div>
       <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-        <el-tab-pane label="质量参数管理" name="first"></el-tab-pane>
+        <el-tab-pane label="质量参数设置" name="first"></el-tab-pane>
         <el-tab-pane label="合成级配设置" name="second"></el-tab-pane>
       </el-tabs>
     </div>
 
-    <div v-show="showName == '质量参数管理'">
+    <div v-show="showName == '质量参数设置'">
       <el-table
         v-loading="loading"
         :data="qualityParametersList"
@@ -465,6 +465,35 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="粉料2" prop="eightMin">
+                <el-input
+                  class="input-width"
+                  type="number"
+                  v-model="form.eightMin"
+                  placeholder="请输入"
+                />
+                -
+                <el-input
+                  class="input-width"
+                  type="number"
+                  v-model="form.eightMax"
+                  placeholder="请输入"
+                />&nbsp;
+                <el-select
+                  class="input-width"
+                  v-model="form.eightType"
+                  placeholder="类型"
+                >
+                  <el-option
+                    v-for="dict in oneTypeOptions"
+                    :key="dict.dictValue"
+                    :label="dict.dictLabel"
+                    :value="dict.dictValue"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="粉料3" prop="eightMin">
                 <el-input
                   class="input-width"
                   type="number"
@@ -1131,7 +1160,7 @@ export default {
       // 表单校验
       rules: {},
       activeName: "first",
-      showName: "质量参数管理",
+      showName: "质量参数设置",
       /*
        *以下是新增质量参数的操作
        */
@@ -1399,7 +1428,7 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加质量参数设置";
+      this.title = "新增质量参数";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -1488,7 +1517,7 @@ export default {
     handleAddGradation() {
       this.reset();
       this.open = true;
-      this.title = "添加质量参数设置";
+      this.title = "新增质量参数";
     },
     /*切换选项卡*/
     handleClick(tab, event) {
@@ -1611,7 +1640,7 @@ export default {
     handleAdd2() {
       this.reset2();
       this.open2 = true;
-      this.title2 = "添加质量参数";
+      this.title2 = "新增合成级配参数";
       this.form2.pdData0 = JSON.parse(JSON.stringify(this.initData0));
       this.form2.pdData1 = JSON.parse(JSON.stringify(this.initData1));
     },

@@ -433,7 +433,6 @@
       },
       /** 某一行被点击 */
       rowClick(row, column, event) {
-
         const drId = row.drId || this.ids;
         getDetectionRecord(drId).then(response => {
           this.form = response.data;

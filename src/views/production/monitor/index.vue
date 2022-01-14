@@ -79,6 +79,7 @@
             </el-col>
             <el-col :span="20">
               <el-divider content-position="center">设计配比</el-divider>
+              <!-- 默认, dataShowType=0 -->
               <el-table
                 v-if="dataShowType === 0"
                 :data="lastItemPB"
@@ -141,7 +142,7 @@
                   label="沥青"
                 ></el-table-column>
               </el-table>
-              <!--任丘-->
+              <!--任丘, dataShowType=1-->
               <el-table
                 v-if="dataShowType === 1"
                 :data="lastItemPB"
@@ -204,11 +205,75 @@
                   label="沥青"
                 ></el-table-column>
               </el-table>
+              <!--鑫丰, dataShowType=2-->
+              <el-table
+                v-if="dataShowType === 2"
+                :data="lastItemPB"
+                border
+                style="width: 100%"
+              >
+                <el-table-column
+                  align="center"
+                  prop="guanci"
+                  label=""
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="one"
+                  label="仓1"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="two"
+                  label="仓2"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="three"
+                  label="仓3"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="four"
+                  label="仓4"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="five"
+                  label="仓5"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="six_1"
+                  label="仓6"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="six"
+                  label="粉料1"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="seven"
+                  label="粉料2"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="zshsl"
+                  label="再生料"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="eight"
+                  label="沥青"
+                ></el-table-column>
+              </el-table>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="24">
               <el-divider content-position="center">生产看板</el-divider>
+              <!-- 默认, dataShowType=0 -->
               <el-table
                 v-if="dataShowType === 0"
                 :data="arr"
@@ -240,178 +305,138 @@
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="two_S"
-                  label="仓2"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="two_S" label="仓2">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.two_S,
                           'two_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.twoMin,
+                          scope.row.twoMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="three_S"
-                  label="仓3"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="three_S" label="仓3">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.three_S,
                           'three_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.threeMin,
+                          scope.row.threeMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="four_S"
-                  label="仓4"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="four_S" label="仓4">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.four_S,
                           'four_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.fourMin,
+                          scope.row.fourMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="five_S"
-                  label="仓5"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="five_S" label="仓5">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.five_S,
                           'five_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.fiveMin,
+                          scope.row.fiveMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="six_S"
-                  label="仓6"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="six_S" label="仓6">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.six_S,
                           'six_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.sixMin,
+                          scope.row.sixMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="seven_S"
-                  label="粉料1"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="seven_S" label="粉料1">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.seven_S,
                           'seven_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.sevenMin,
+                          scope.row.sevenMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="six_1_S"
-                  label="粉料2"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="six_1_S" label="粉料2">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.six_1_S,
                           'six_1_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.sixMin,
+                          scope.row.sixMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="zsl_S"
-                  label="再生料"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="zsl_S" label="再生料">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.zsl_S,
                           'zsl_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.zslMin,
+                          scope.row.zslMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="eight_S"
-                  label="沥青"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="eight_S" label="沥青">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.eight_S,
                           'eight_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.eightMin,
+                          scope.row.eightMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="ysb"
-                  label="油石比"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="ysb" label="油石比">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.ysb,
                           'ysb',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.ysbMin,
+                          scope.row.ysbMax
                         )
                       "
                     /> </template
                 ></el-table-column>
               </el-table>
-              <!--任丘-->
+              <!--任丘, dataShowType=1-->
               <el-table
                 v-if="dataShowType === 1"
                 :data="arr"
@@ -430,12 +455,8 @@
                   prop="guanci"
                   label="盘次"
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="one_S_B"
-                  label="仓1"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="one_S_B" label="仓1">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
@@ -447,172 +468,295 @@
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="two_S_B"
-                  label="仓2"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="two_S_B" label="仓2">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.two_S_B,
                           'two_S_B',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.twoMin,
+                          scope.row.twoMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="three_S_B"
-                  label="仓3"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="three_S_B" label="仓3">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.three_S_B,
                           'three_S_B',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.threeMin,
+                          scope.row.threeMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="four_S_B"
-                  label="仓4"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="four_S_B" label="仓4">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.four_S_B,
                           'four_S_B',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.fourMin,
+                          scope.row.fourMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="five_S_B"
-                  label="仓5"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="five_S_B" label="仓5">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.five_S_B,
                           'five_S_B',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.fiveMin,
+                          scope.row.fiveMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="six_S_B"
-                  label="仓6"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="six_S_B" label="仓6">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.six_S_B,
                           'six_S_B',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.sixMin,
+                          scope.row.sixMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="seven_S_B"
-                  label="粉料1"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="seven_S_B" label="粉料1">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.seven_S_B,
                           'seven_S_B',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.sevenMin,
+                          scope.row.sevenMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="six_1_S_B"
-                  label="粉料2"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="six_1_S_B" label="粉料2">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.six_1_S_B,
                           'six_1_S_B',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.sixMin,
+                          scope.row.sixMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="zsl_S"
-                  label="再生料"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="zsl_S" label="再生料">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.zsl_S,
                           'zsl_S',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.zslMin,
+                          scope.row.zslMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="eight_S"
-                  label="沥青"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="eight_S" label="沥青">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.eight_S,
                           'eight_S',
+                          scope.row.eightMin,
+                          scope.row.eightMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="ysb" label="油石比">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.ysb,
+                          'ysb',
+                          scope.row.ysbMin,
+                          scope.row.ysbMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+              </el-table>
+              <!--鑫丰, dataShowType=2-->
+              <el-table
+                v-if="dataShowType === 2"
+                :data="arr"
+                border
+                height="280"
+                style="width: 100%"
+              >
+                <el-table-column
+                  align="center"
+                  fixed
+                  prop="dateTime"
+                  label="时间"
+                ></el-table-column>
+                <el-table-column
+                  align="center"
+                  prop="guanci"
+                  label="盘次"
+                ></el-table-column>
+                <el-table-column align="center" prop="one" label="仓1">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.one,
+                          'one',
                           scope.row.oneMin,
                           scope.row.oneMax
                         )
                       "
                     /> </template
                 ></el-table-column>
-                <el-table-column
-                  align="center"
-                  prop="ysb"
-                  label="油石比"
-                >
-                 <template slot-scope="scope">
+                <el-table-column align="center" prop="two" label="仓2">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.two,
+                          'two',
+                          scope.row.twoMin,
+                          scope.row.twoMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="three" label="仓3">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.three,
+                          'three',
+                          scope.row.threeMin,
+                          scope.row.threeMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="four" label="仓4">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.four,
+                          'four',
+                          scope.row.fourMin,
+                          scope.row.fourMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="five" label="仓5">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.five,
+                          'five',
+                          scope.row.fiveMin,
+                          scope.row.fiveMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="six_1" label="仓6">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.six_1,
+                          'six_1',
+                          scope.row.six_1Min,
+                          scope.row.six_1Max
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="six" label="粉料1">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.six,
+                          'six',
+                          scope.row.sixMin,
+                          scope.row.sixMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="seven" label="粉料2">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.seven,
+                          'seven',
+                          scope.row.sevenMin,
+                          scope.row.sevenMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="zshsl" label="再生料">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.zshsl,
+                          'zshsl',
+                          scope.row.zshslMin,
+                          scope.row.zshslMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="eight" label="沥青">
+                  <template slot-scope="scope">
+                    <div
+                      v-html="
+                        createHtml(
+                          scope.row.eight,
+                          'eight',
+                          scope.row.eightMin,
+                          scope.row.eightMax
+                        )
+                      "
+                    /> </template
+                ></el-table-column>
+                <el-table-column align="center" prop="ysb" label="油石比">
+                  <template slot-scope="scope">
                     <div
                       v-html="
                         createHtml(
                           scope.row.ysb,
                           'ysb',
-                          scope.row.oneMin,
-                          scope.row.oneMax
+                          scope.row.ysbMin,
+                          scope.row.ysbMax
                         )
                       "
                     /> </template
@@ -717,7 +861,7 @@ export default {
         xData: [],
         yData: [],
       },
-      //数据展示类型 1:任丘
+      //数据展示类型 0:默认, 1:任丘, 2:鑫丰
       dataShowType: 0,
       //质量参数表
       modelList: [],
@@ -730,8 +874,10 @@ export default {
     initDataShowType() {
       let msName = getMS();
       let equipmentName = getEquipment();
-      if (msName.indexOf("任丘") !== -1) {
+      if (msName.indexOf("任丘") > -1) {
         this.dataShowType = 1;
+      } else if (msName.indexOf("鑫丰") > -1) {
+        this.dataShowType = 2;
       }
     },
     /** WebSocket*/

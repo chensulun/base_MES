@@ -76,6 +76,7 @@ export default {
           name.indexOf("SIX") > -1 ? (nameCN= "粉料1") : null;
           name.indexOf("SIX1") > -1 ? (nameCN = "仓6") : null;
           name.indexOf("SEVEN") > -1 ? (nameCN = "粉料2") : null;
+          name.indexOf("SEVEN_1") > -1 ? (nameCN = "粉料3") : null;
           i.name = nameCN;
           i.type = "line";
           i.smooth = true;

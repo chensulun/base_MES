@@ -550,6 +550,7 @@
         const prId = row.prId || this.ids
         getPersonnelRelations(prId).then(response => {
           this.form = response.data;
+          this.fileList = [];
           if (this.form.cdpFileData) {
             this.fileList = JSON.parse(this.form.prFileData);
           }

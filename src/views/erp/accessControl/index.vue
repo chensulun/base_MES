@@ -6,7 +6,7 @@
         <h1>入口道闸</h1>
         <div>
           <div class="img">
-            <span>图片</span>
+            <img src="../../../assets/images/RC.jpeg" />
           </div>
           <div class="switch">
             <span>开关</span>
@@ -18,7 +18,7 @@
         <h1>厂门道闸</h1>
         <div>
           <div class="img">
-            <span>图片</span>
+            <img src="../../../assets/images/RCC.png" />
           </div>
           <div class="switch">
             <span>开关</span>
@@ -32,7 +32,7 @@
         <h1>集控中心门禁</h1>
         <div>
           <div class="img">
-            <span>图片</span>
+            <img src="../../../assets/images/RCCC.jpeg" />
           </div>
           <div class="switch">
             <span>开关</span>
@@ -44,7 +44,7 @@
         <h1>平台门禁</h1>
         <div>
           <div class="img">
-            <span>图片</span>
+            <img src="../../../assets/images/RCCCC.jpeg" />
           </div>
           <div class="switch">
             <span>开关</span>
@@ -56,7 +56,7 @@
         <h1>办公区门禁</h1>
         <div>
           <div class="img">
-            <span>图片</span>
+            <img src="../../../assets/images/RCCCCC.jpeg" />
           </div>
           <div class="switch">
             <span>开关</span>
@@ -86,9 +86,20 @@ export default {
     position: relative;
     width: 30%;
     height: 400px;
-    background-color: pink;
     margin-right: 20px;
     margin-bottom: 20px;
+    border: 1px solid black;
+    overflow: hidden;
+    h1 {
+      font-size: 2em;
+      margin: 0.67em 0;
+      margin-left: 20px;
+    }
+    .img {
+      img {
+        width: 100%;
+      }
+    }
     .switch {
       position: absolute;
       top: 20px;
