@@ -28,16 +28,14 @@
         <el-table-column prop="additive" label="添加剂"></el-table-column>
       </el-table>
       <!-- 分页按钮 -->
-      <div class="my-btnGroup" v-show="this.formItems.length !== 0">
-        <el-button-group class="my-btnGroupItem">
-          <el-button icon="el-icon-arrow-left">上一页</el-button>
-          <el-button>1</el-button>
-          <el-button>2</el-button>
-          <el-button
-            >下一页<i class="el-icon-arrow-right el-icon--right"></i
-          ></el-button>
-        </el-button-group>
-      </div>
+      <!-- 分页按钮 -->
+      <pagination
+        v-show="total > 0"
+        :total="total"
+        :page.sync="queryParams.page"
+        :limit.sync="queryParams.pageSize"
+        @pagination="getList"
+      />
     </div>
   </div>
 </template>
@@ -60,6 +58,14 @@ export default {
           additive: "添加剂",
         },
       ],
+      total: 0,
+      // 查询参数
+      queryParams: {
+        page: 1,
+        pageSize: 10,
+        beginDate: null,
+        endDate: null,
+      },
     };
   },
 

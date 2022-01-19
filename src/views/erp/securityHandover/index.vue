@@ -105,7 +105,12 @@
       </el-table-column>
       <el-table-column label="上报人员" align="center" prop="createBy" />
       <el-table-column label="班组" align="center" prop="shGroupOne" />
-      <el-table-column label="安全程度" align="center" prop="shStatus" />
+      <el-table-column
+        label="安全程度"
+        align="center"
+        prop="shStatus"
+        :formatter="shStatus"
+      />
       <el-table-column
         label="操作"
         align="center"
@@ -133,7 +138,13 @@
     />
 
     <!-- 添加或修改安全交底对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="1000px" append-to-body  :close-on-click-modal="false">
+    <el-dialog
+      :title="title"
+      :visible.sync="open"
+      width="1000px"
+      append-to-body
+      :close-on-click-modal="false"
+    >
       <el-row :gutter="15">
         <el-form ref="form" :model="form" :rules="rules" label-width="200px">
           <el-col :span="10">
@@ -145,7 +156,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="10">
-            <el-form-item label="责任人" prop="shGroupOneUserName">
+            <el-form-item label="责任人">
               <template slot-scope="scope">
                 <el-select
                   allow-create
@@ -156,7 +167,7 @@
                 >
                   <el-option
                     v-for="dict in userList"
-                    :key="dict.userId"
+                    :key="dict.nickName"
                     :label="dict.nickName"
                     :value="dict.userId"
                   ></el-option>
@@ -173,7 +184,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="10">
-            <el-form-item label="责任人" prop="shGroupTwoUserName">
+            <el-form-item label="责任人">
               <template slot-scope="scope">
                 <el-select
                   allow-create
@@ -184,7 +195,7 @@
                 >
                   <el-option
                     v-for="dict in userList"
-                    :key="dict.userId"
+                    :key="dict.nickName"
                     :label="dict.nickName"
                     :value="dict.userId"
                   ></el-option>
@@ -193,7 +204,7 @@
             </el-form-item>
           </el-col>
           <el-col>
-            <el-form-item label="参会缺席人员" prop="shAbsentPerson">
+            <el-form-item label="参会缺席人员">
               <template slot-scope="scope">
                 <el-select
                   allow-create
@@ -204,7 +215,7 @@
                 >
                   <el-option
                     v-for="dict in userList"
-                    :key="dict.userId"
+                    :key="dict.nickName"
                     :label="dict.nickName"
                     :value="dict.userId"
                   ></el-option>
@@ -249,9 +260,22 @@
           </el-col>
           <el-col>
             <el-form-item label="安全程度">
-              <el-radio-group v-model="form.shStatus">
-                <el-radio label="1">请选择字典生成</el-radio>
-              </el-radio-group>
+              <template slot-scope="scope">
+                <el-select
+                  allow-create
+                  filterable
+                  v-model="form.shStatus"
+                  @change="personLiableSelectChange3($event, scope.row)"
+                  placeholder="请选择"
+                >
+                  <el-option
+                    v-for="dict in security"
+                    :key="dict.dictLabel"
+                    :label="dict.dictLabel"
+                    :value="dict.dictValue"
+                  ></el-option>
+                </el-select>
+              </template>
             </el-form-item>
           </el-col>
           <el-col>
@@ -267,7 +291,11 @@
                 :file-list="fileList"
                 :auto-upload="false"
               >
-                <el-button slot="trigger" size="small" type="primary"
+                <el-button
+                  slot="trigger"
+                  size="small"
+                  type="primary"
+                  v-if="dosomething"
                   >选取文件</el-button
                 >
                 <el-button
@@ -275,16 +303,21 @@
                   size="small"
                   type="success"
                   @click="submitUpload"
+                  v-if="dosomething"
                   >上传到服务器
                 </el-button>
-                <div slot="tip" class="el-upload__tip">点击上传文件</div>
+                <div slot="tip" class="el-upload__tip" v-if="dosomething">
+                  点击上传文件
+                </div>
               </el-upload>
             </el-form-item>
           </el-col>
         </el-form>
       </el-row>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button type="primary" @click="submitForm" v-if="dosomething"
+          >确 定</el-button
+        >
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
@@ -308,6 +341,7 @@ export default {
   components: {},
   data() {
     return {
+      dosomething: true,
       // 遮罩层
       loading: true,
       // 导出遮罩层
@@ -346,11 +380,15 @@ export default {
       headers: {
         Authorization: "Bearer " + getToken(),
       },
+      security: [],
     };
   },
   created() {
-    this.getList();
     this.getUserList();
+    this.getDicts("erp_security_handover_status").then((response) => {
+      this.security = response.data;
+    });
+    this.getList();
   },
   methods: {
     /** 查询安全交底列表 */
@@ -418,6 +456,7 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
+      this.dosomething = true;
       this.title = "添加安全交底";
     },
     /** 修改按钮操作 */
@@ -425,7 +464,11 @@ export default {
       this.reset();
       const shId = row.shId || this.ids;
       getSecurityHandover(shId).then((response) => {
+        this.dosomething = false;
         this.form = response.data;
+        if (this.form.shFileData && this.form.shFileData.length > 0) {
+          this.fileList = JSON.parse(this.form.shFileData);
+        }
         this.open = true;
         this.title = "修改安全交底";
       });
@@ -512,6 +555,14 @@ export default {
       });
       this.form.shAbsentPerson = user.nickName;
     },
+    /** 安全下拉事件*/
+    personLiableSelectChange3(Id, row) {
+      let security = this.security.find((item) => {
+        return item.dictValue === Id;
+      });
+      console.log(security);
+      this.form.shStatus = security.dictValue;
+    },
     /** 查询系统用户 */
     getUserList() {
       listUser({ pageNum: 1, pageSize: 999 }).then((response) => {
@@ -570,6 +621,10 @@ export default {
         ele.click();
         document.body.removeChild(ele);
       }
+    },
+    // 巡检性质字典翻译
+    shStatus(row, column) {
+      return this.selectDictLabel(this.security, row.shStatus);
     },
   },
 };

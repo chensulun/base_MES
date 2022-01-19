@@ -200,8 +200,8 @@
       <el-row :gutter="10">
         <el-form ref="form" :rules="rules" label-width="120px" :model="form">
           <el-col :span="12">
-            <el-form-item label="巡检类型" prop="siType">
-              <el-input v-model="form.siType" readonly/>
+            <el-form-item label="类别" prop="ssType">
+              <el-input v-model="form.ssType" readonly />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -239,7 +239,11 @@
                   <el-col :span="24">
                     <el-form-item label="巡检说明">
                       <el-col>
-                        <el-input v-model="i.sidRemark" type="textarea" />
+                        <el-input
+                          v-model="i.sidRemark"
+                          type="textarea"
+                          placeholder="请输入巡检说明"
+                        />
                       </el-col>
                     </el-form-item>
                   </el-col>
@@ -424,7 +428,7 @@ export default {
       siStatusOptions: [],
       // 查询参数
       queryParams: {
-        userName:null,
+        userName: null,
         pageNum: 1,
         pageSize: 10,
         msId: null,
@@ -476,9 +480,7 @@ export default {
     ssType(row, column) {
       return this.selectDictLabel(this.type, row.ssType);
     },
-    siType(row, column) {
-      return this.selectDictLabel(this.type, row.siType);
-    },
+
     // 状态字典翻译
     siStatusFormat(row, column) {
       return this.selectDictLabel(this.siStatusOptions, row.siStatus);
@@ -534,6 +536,8 @@ export default {
       const siId = row.siId || this.ids;
       getSecurityInspection(siId).then((response) => {
         this.form = response.data;
+        this.form.ssType=this.type[this.form.ssType].dictLabel
+        this.form.siStatus=this.siTypeOptions[this.form.siStatus].dictLabel
         for (const i of this.form.securityInspectionDetails) {
           if (i.imgData) {
             this.picFileList.push(JSON.parse(i.imgData));
@@ -545,6 +549,9 @@ export default {
             this.vidFileList.push(JSON.parse(i.videoData));
           }
         }
+        console.log(this.picFileList);
+        console.log(this.audFileList);
+        console.log(this.vidFileList);
 
         this.open = true;
         this.isShowBtn = true;
@@ -557,19 +564,9 @@ export default {
       const siId = row.siId || this.ids;
       getSecurityInspection(siId).then((response) => {
         this.form = response.data;
-        console.log(this.form);
-        for (const i of this.form.securityInspectionDetails) {
-          if (i.imgData) {
-            this.picFileList.push(JSON.parse(i.imgData));
-          }
-          if (i.audioData) {
-            this.audFileList.push(JSON.parse(i.audioData));
-          }
-          if (i.videoData) {
-            this.vidFileList.push(JSON.parse(i.videoData));
-          }
-        }
-        // console.log(this.picFileList, this.audFileList, this.vidFileList);
+        this.form.ssType=this.type[this.form.ssType].dictLabel
+        this.form.siStatus=this.siTypeOptions[this.form.siStatus].dictLabel
+        
 
         this.open = true;
         this.isShowBtn = false;

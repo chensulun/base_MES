@@ -45,7 +45,7 @@
         :header-cell-style="headClass"
       >
         <el-table-column prop="wllx" label="材料类型"></el-table-column>
-        <!-- <el-table-column prop="wl" label="材料类型"></el-table-column> -->
+        <el-table-column prop="wldw" label="供应商"></el-table-column>
         <el-table-column prop="jz" label="净重"></el-table-column>
       </el-table>
       <!-- 分页按钮 -->
@@ -76,7 +76,7 @@ export default {
       // 查询参数
       queryParams: {
         page: 1,
-        pageSize: 9999,
+        pageSize: 10,
         beginDate: null,
         endDate: null,
       },

@@ -48,7 +48,27 @@
 
     <el-row :gutter="20" class="mb8" v-loading="loading">
       <el-col :span="12">
-        <el-table v-show="queryParams.type !== 1" :data="datalist">
+        <el-table
+          v-show="queryParams.type == null || queryParams.type == ''"
+          :data="datalist"
+        >
+          <!-- <el-table-column label="日期" align="center" width="150px" prop="date"/>-->
+          <el-table-column label="用电量" align="center" prop="dl" />
+          <el-table-column label="用气量" align="center" prop="ql" />
+          <el-table-column label="用水量" align="center" prop="sl" />
+          <el-table-column label="用油量" align="center" prop="yl" />
+        </el-table>
+        <el-table v-show="queryParams.type == 4" :data="datalist">
+          <!-- <el-table-column label="日期" align="center" width="150px" prop="date"/>-->
+          <el-table-column label="用电量" align="center" prop="dl" />
+          <el-table-column label="用气量" align="center" prop="ql" />
+          <el-table-column label="用水量" align="center" prop="sl" />
+          <el-table-column label="用油量" align="center" prop="yl" />
+        </el-table>
+        <el-table
+          v-show="queryParams.type == 2 && showDataType === 1"
+          :data="datalist"
+        >
           <!-- <el-table-column label="日期" align="center" width="150px" prop="date"/>-->
           <el-table-column label="用电量" align="center" prop="dl" />
           <el-table-column label="用气量" align="center" prop="ql" />
@@ -78,6 +98,13 @@
           />
           <el-table-column label="电能(破碎)" align="center" prop="dnps" />
           <el-table-column label="电能(生产)" align="center" prop="dnsc" />
+        </el-table>
+        <el-table
+          v-show="queryParams.type === 3 && showDataType === 1"
+          :data="datalist"
+        >
+          <el-table-column label="水(清洗)" align="center" prop="sqx" />
+          <el-table-column label="水(软化)" align="center" prop="srh" />
         </el-table>
       </el-col>
       <el-col :span="12">
@@ -208,14 +235,11 @@ export default {
             // console.log(obj);
           }
           if (this.queryParams.type == 3) {
-            this.xData = ['水(清洗)',"水(软化)"];
-            this.datalist = [{}];
-            // this.datalist[0].ql = response.obj.steamTotal;
-            // console.log(this.datalist);
-            // this.datalist = arrayData;
+            this.xData = ["水(清洗)", "水(软化)"];
+            // this.datalist = [{}];
+            console.log(response.obj);
             this.yData[0] = obj.sqx;
             this.yData[1] = obj.srh;
-            console.log(obj);
           }
           console.log(this.yData);
           this.drawLine();

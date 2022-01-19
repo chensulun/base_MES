@@ -60,21 +60,21 @@
           :header-cell-style="{ background: '#eef1f6' }"
           :stripe="true"
         >
-          <el-table-column prop="createTime" label="时间"> </el-table-column>
-          <el-table-column prop="one" label="0.075"> </el-table-column>
-          <el-table-column prop="thirteen" label="0.15"> </el-table-column>
-          <el-table-column prop="two" label="0.3"> </el-table-column>
-          <el-table-column prop="three" label="0.6"> </el-table-column>
-          <el-table-column prop="four" label="1.18"> </el-table-column>
-          <el-table-column prop="five" label="2.36"> </el-table-column>
-          <el-table-column prop="six" label="4.75"> </el-table-column>
-          <el-table-column prop="seven" label="9.5"> </el-table-column>
-          <el-table-column prop="eight" label="13.2"> </el-table-column>
-          <el-table-column prop="nine" label="16"> </el-table-column>
-          <el-table-column prop="ten" label="19"> </el-table-column>
-          <el-table-column prop="eleven" label="26.5"> </el-table-column>
-          <el-table-column prop="twelve" label="31.5"> </el-table-column>
-          <el-table-column prop="address" label="操作">
+          <el-table-column prop="dataItemNewTime" label="时间" width="160px" align='center'> </el-table-column>
+          <el-table-column prop="one" label="0.075" align='center'> </el-table-column>
+          <el-table-column prop="thirteen" label="0.15" align='center'> </el-table-column>
+          <el-table-column prop="two" label="0.3" align='center'> </el-table-column>
+          <el-table-column prop="three" label="0.6" align='center'> </el-table-column>
+          <el-table-column prop="four" label="1.18" align='center'> </el-table-column>
+          <el-table-column prop="five" label="2.36" align='center'> </el-table-column>
+          <el-table-column prop="six" label="4.75" align='center'> </el-table-column>
+          <el-table-column prop="seven" label="9.5" align='center'> </el-table-column>
+          <el-table-column prop="eight" label="13.2" align='center'> </el-table-column>
+          <el-table-column prop="nine" label="16" align='center'> </el-table-column>
+          <el-table-column prop="ten" label="19" align='center'> </el-table-column>
+          <el-table-column prop="eleven" label="26.5" align='center'> </el-table-column>
+          <el-table-column prop="twelve" label="31.5" align='center'> </el-table-column>
+          <el-table-column prop="address" label="操作" align='center'>
             <template slot-scope="scope">
               <el-button
                 @click="doEcharts(scope)"
@@ -173,6 +173,7 @@ export default {
         dataType: "json",
       })
         .then((res) => {
+          this.total = res.data.num;
           this.tableData = [];
           this.tableDataAllInfo = res.data.list;
           res.data.list.forEach((ele) => {

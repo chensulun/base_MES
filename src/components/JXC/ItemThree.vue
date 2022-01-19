@@ -73,7 +73,7 @@ export default {
       // 查询参数
       queryParams: {
         page: 1,
-        pageSize: 9999,
+        pageSize: 10,
         beginDate: null,
         endDate: null,
       },
