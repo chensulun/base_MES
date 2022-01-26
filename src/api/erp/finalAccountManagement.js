@@ -9,6 +9,14 @@ export function listFinalAccountManagement(query) {
   })
 }
 
+export function listByDetailsFinalAccountManagement(query) {
+  return request({
+    url: '/erp/finalAccountManagement/listByDetails',
+    method: 'get',
+    params: query
+  })
+}
+
 // 查询决算列表详细
 export function getFinalAccountManagement(famId) {
   return request({

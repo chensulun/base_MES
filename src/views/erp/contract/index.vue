@@ -150,7 +150,7 @@
     />
 
     <!-- 添加或修改合同管理对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="800px" append-to-body :close-on-click-modal="false">
+    <el-dialog :title="title" :visible.sync="open" width="1000px" append-to-body :close-on-click-modal="false">
       <el-row :gutter="15">
         <el-form ref="form" :model="form" :rules="rules" label-width="80px">
           <el-col :span="12">
@@ -243,14 +243,26 @@
           <el-col :span="24">
             <el-form-item label="支付条件" prop="contractTaxRate">
               <el-col :span="24" v-for="(item,index) in form.contractPaymentDataList">
-                <el-col :span="8">
+                <el-col :span="5">
                   <el-form-item :label="'阶段'+(index + 1)" :prop="'stage'+index">
-                    <el-input v-model="item.stage" type="number" placeholder=""/>
+                    <el-input @change="forceUpdate" v-model="item.stage" type="number" placeholder=""/>
                   </el-form-item>
                 </el-col>
-                <el-col :span="12">
+                <el-col :span="8">
                   <el-form-item label="付款时间" :prop="'time'+index">
-                    <el-input v-model="item.time"  placeholder=""/>
+                    <el-date-picker
+                      @input="forceUpdate"
+                      v-model="item.time"
+                      type="datetime"
+                      format="yyyy-MM-dd HH:mm:ss"
+                      value-format="yyyy-MM-dd HH:mm:ss"
+                      placeholder="选择日期时间">
+                    </el-date-picker>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="7">
+                  <el-form-item label="备注" :prop="'remark'+index">
+                    <el-input @input="forceUpdate" v-model="item.remark" placeholder=""/>
                   </el-form-item>
                 </el-col>
                 <el-col :span="4">
@@ -570,6 +582,10 @@
       this.getProjectTrackingList();
     },
     methods: {
+      /** 刷新*/
+      forceUpdate() {
+        this.$forceUpdate();
+      },
       /** 上传文件*/
       submitUpload() {
         this.$refs.upload.submit();
@@ -693,7 +709,7 @@
       },
       /** 增加支付条件输入框*/
       addPaymentDataList() {
-        let stage = {stage: null,time:null};
+        let stage = {stage: null,time:null,remark:null};
         this.form.contractPaymentDataList.push(stage);
       },
       /** 添加材料行*/
@@ -764,7 +780,7 @@
           contractProductData: null,
           contractProductDataList: [],
           contractPaymentData: null,
-          contractPaymentDataList: [{stage: null,time:null}],
+          contractPaymentDataList: [{stage: null,time:null,remark:null}],
           contractType: "0",
           contractStatus: null,
           delFlag: null,

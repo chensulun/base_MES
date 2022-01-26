@@ -72,6 +72,16 @@
         >导出
         </el-button>
       </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="warning"
+          plain
+          icon="el-icon-setting"
+          size="mini"
+          @click="createSalary"
+        >生成本月工资
+        </el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -304,6 +314,7 @@
     exportSalaryManagement,
     getInsurance,
     getTax,
+    generateCurrentMonthSalary,
   } from "@/api/erp/salaryManagement";
 
   export default {
@@ -351,6 +362,19 @@
       this.getInsuranceValue()
     },
     methods: {
+      createSalary(){
+        this.$confirm('是否根据上月工资录入情况生成本月工资?', "警告", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(function () {
+          return generateCurrentMonthSalary();
+        }).then(() => {
+          this.getList();
+          this.msgSuccess("操作成功");
+        }).catch(() => {
+        });
+      },
       getRowValue(data,row) {
         let list = JSON.parse(data);
         for (let i = 0; i < list.length; i++) {

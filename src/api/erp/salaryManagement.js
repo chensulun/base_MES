@@ -68,3 +68,11 @@ export function getTax(query) {
     params: query
   })
 }
+
+// 个税
+export function generateCurrentMonthSalary() {
+  return request({
+    url: '/erp/salaryManagement/generateCurrentMonthSalary',
+    method: 'get'
+  })
+}

@@ -51,3 +51,13 @@ export function exportContract(query) {
     params: query
   })
 }
+
+
+// 合同材料价格表
+export function priceList(query) {
+  return request({
+    url: '/erp/contract/priceList',
+    method: 'get',
+    params: query
+  })
+}
